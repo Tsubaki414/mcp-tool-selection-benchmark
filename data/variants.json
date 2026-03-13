@@ -1,0 +1,214 @@
+{
+  "version": "3.0",
+  "generated": "2026-03-09",
+  "total_variants": 20,
+  "feature_distribution": {
+    "has_examples": 7,
+    "has_negative_cases": 5,
+    "param_format_explicit": 4,
+    "mentions_constraints": 3,
+    "uses_action_verbs": 1
+  },
+  "variants": [
+    {
+      "original_id": "uniswap_swap",
+      "variant_id": "uniswap_swap_v1",
+      "feature_changed": "has_examples",
+      "change_description": "Added usage example",
+      "original_description": "Swap tokens on Uniswap V3. Supports all ERC20 tokens on Ethereum mainnet and L2s. Automatically finds the best route and handles slippage protection.",
+      "variant_description": "Swap tokens on Uniswap V3. Supports all ERC20 tokens on Ethereum mainnet and L2s. Automatically finds the best route and handles slippage protection. Example: swap(fromToken='USDC', toToken='ETH', amount=1000, slippageTolerance=0.5) swaps 1000 USDC to ETH.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "1inch_swap",
+      "variant_id": "1inch_swap_v1",
+      "feature_changed": "has_negative_cases",
+      "change_description": "Added negative case clarification",
+      "original_description": "Swap tokens using 1inch aggregator for best rates across DEXs.",
+      "variant_description": "Swap tokens using 1inch aggregator for best rates across DEXs. Note: This tool does NOT support limit orders, recurring swaps, or cross-chain bridges - use dedicated tools for those.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "aave_deposit",
+      "variant_id": "aave_deposit_v1",
+      "feature_changed": "param_format_explicit",
+      "change_description": "Added explicit parameter format",
+      "original_description": "Supply assets to Aave lending pool to earn interest.",
+      "variant_description": "Supply assets to Aave lending pool to earn interest. Parameters: asset (address, e.g. '0xA0b8...'), amount (string in wei, e.g. '1000000000000000000' for 1 ETH), onBehalfOf (address, recipient of aTokens).",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "compound_supply",
+      "variant_id": "compound_supply_v1",
+      "feature_changed": "has_examples",
+      "change_description": "Added usage example",
+      "original_description": "Supply assets to Compound III to earn interest and use as collateral.",
+      "variant_description": "Supply assets to Compound III to earn interest and use as collateral. Example: supply_collateral(asset='0xC02...WETH', amount='5000000000000000000') supplies 5 WETH as collateral.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "zapper_balance",
+      "variant_id": "zapper_balance_v1",
+      "feature_changed": "mentions_constraints",
+      "change_description": "Added rate limit and chain constraints",
+      "original_description": "Get complete DeFi portfolio breakdown across all protocols and chains.",
+      "variant_description": "Get complete DeFi portfolio breakdown across all protocols and chains. Supports Ethereum, Polygon, Arbitrum, Optimism, Base. Rate limit: 100 requests/min. Returns balances, positions, and USD values.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "defisaver_monitor",
+      "variant_id": "defisaver_monitor_v1",
+      "feature_changed": "has_negative_cases",
+      "change_description": "Added scope clarification",
+      "original_description": "Monitor DeFi position health and liquidation risk across protocols.",
+      "variant_description": "Monitor DeFi position health and liquidation risk across protocols. Supports Aave, Compound, MakerDAO. Does NOT track simple wallet balances or NFTs - use portfolio tools for those.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "stargate_bridge",
+      "variant_id": "stargate_bridge_v1",
+      "feature_changed": "has_examples",
+      "change_description": "Added usage example",
+      "original_description": "Bridge tokens across chains using Stargate's unified liquidity pools.",
+      "variant_description": "Bridge tokens across chains using Stargate's unified liquidity pools. Example: bridge_tokens(srcChainId=1, dstChainId=42161, token='USDC', amount='1000000000') bridges 1000 USDC from Ethereum to Arbitrum.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "socket_bridge",
+      "variant_id": "socket_bridge_v1",
+      "feature_changed": "mentions_constraints",
+      "change_description": "Added supported chains",
+      "original_description": "Aggregate bridge quotes and execute optimal cross-chain transfers.",
+      "variant_description": "Aggregate bridge quotes and execute optimal cross-chain transfers. Aggregates routes from Stargate, Hop, Across, Celer. Supported chains: Ethereum, Arbitrum, Optimism, Polygon, Base, BSC, Avalanche.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "mcp_filesystem",
+      "variant_id": "mcp_filesystem_v1",
+      "feature_changed": "has_negative_cases",
+      "change_description": "Added security constraints",
+      "original_description": "Read the complete contents of a file from the file system. Only works within allowed directories.",
+      "variant_description": "Read the complete contents of a file from the file system. Only works within allowed directories. Does NOT support: binary files, files larger than 10MB, or paths outside the sandbox. Use binary_read for non-text files.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "desktop_commander_file",
+      "variant_id": "desktop_commander_file_v1",
+      "feature_changed": "param_format_explicit",
+      "change_description": "Added operation enum details",
+      "original_description": "Perform file operations including read, write, copy, move, delete on local filesystem.",
+      "variant_description": "Perform file operations including read, write, copy, move, delete on local filesystem. Parameters: operation (enum: 'read'|'write'|'copy'|'move'|'delete'), path (absolute or relative path), content (required for write), destination (required for copy/move).",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "mcp_fetch",
+      "variant_id": "mcp_fetch_v1",
+      "feature_changed": "has_negative_cases",
+      "change_description": "Added limitation clarification",
+      "original_description": "Fetches a URL from the internet and extracts its contents as markdown.",
+      "variant_description": "Fetches a URL from the internet and extracts its contents as markdown. Does NOT execute JavaScript - for dynamic/SPA pages, use browser-based tools like Firecrawl or Playwright instead.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "firecrawl_scrape",
+      "variant_id": "firecrawl_scrape_v1",
+      "feature_changed": "has_examples",
+      "change_description": "Added usage example",
+      "original_description": "Scrape a single URL with Firecrawl. Handles JavaScript rendering and returns clean markdown.",
+      "variant_description": "Scrape a single URL with Firecrawl. Handles JavaScript rendering and returns clean markdown. Example: scrape_url(url='https://example.com/dynamic-page', formats=['markdown']) returns rendered page content.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "brave_search",
+      "variant_id": "brave_search_v1",
+      "feature_changed": "uses_action_verbs",
+      "change_description": "Changed to action verb opener",
+      "original_description": "Performs a web search using the Brave Search API, returning relevant results.",
+      "variant_description": "Search the web using Brave Search API to find relevant results. Returns titles, URLs, and snippets for up to 20 results per query.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "tavily_search",
+      "variant_id": "tavily_search_v1",
+      "feature_changed": "mentions_constraints",
+      "change_description": "Added depth options",
+      "original_description": "AI-optimized search engine that returns concise, relevant answers.",
+      "variant_description": "AI-optimized search engine that returns concise, relevant answers. Modes: 'basic' (fast, 5 results) or 'advanced' (thorough, 10+ results with summaries). Best for factual queries requiring accuracy.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "sqlite_query",
+      "variant_id": "sqlite_query_v1",
+      "feature_changed": "has_negative_cases",
+      "change_description": "Added read-only constraint",
+      "original_description": "Execute a SELECT query on the SQLite database.",
+      "variant_description": "Execute a SELECT query on the SQLite database. Read-only: does NOT support INSERT, UPDATE, DELETE, or DDL statements. For write operations, use write_query tool instead.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "clickhouse_query",
+      "variant_id": "clickhouse_query_v1",
+      "feature_changed": "has_examples",
+      "change_description": "Added usage example",
+      "original_description": "Execute analytical queries on ClickHouse for fast OLAP workloads.",
+      "variant_description": "Execute analytical queries on ClickHouse for fast OLAP workloads. Example: query(query='SELECT date, sum(revenue) FROM sales GROUP BY date ORDER BY date', format='JSON') returns aggregated time series.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "slack_send",
+      "variant_id": "slack_send_v1",
+      "feature_changed": "param_format_explicit",
+      "change_description": "Added parameter format details",
+      "original_description": "Send a message to a Slack channel.",
+      "variant_description": "Send a message to a Slack channel. Parameters: channel (string, e.g. '#general' or 'C1234567890'), text (string, supports Slack markdown and emoji :emoji:). Optional: thread_ts for replies.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "ntfy_notify",
+      "variant_id": "ntfy_notify_v1",
+      "feature_changed": "has_examples",
+      "change_description": "Added usage example",
+      "original_description": "Send push notifications via ntfy.sh to any device.",
+      "variant_description": "Send push notifications via ntfy.sh to any device. Example: publish(topic='my-alerts', message='Build completed!', title='CI/CD') sends instant push notification to subscribed devices.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "gcal_create",
+      "variant_id": "gcal_create_v1",
+      "feature_changed": "param_format_explicit",
+      "change_description": "Added ISO8601 format details",
+      "original_description": "Create a new event in Google Calendar.",
+      "variant_description": "Create a new event in Google Calendar. Parameters: summary (string, event title), start/end (ISO8601 datetime, e.g. '2024-03-15T14:00:00-07:00'), description (optional, supports HTML).",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    },
+    {
+      "original_id": "todoist_create",
+      "variant_id": "todoist_create_v1",
+      "feature_changed": "has_examples",
+      "change_description": "Added usage example",
+      "original_description": "Create a new task in Todoist with optional due date and priority.",
+      "variant_description": "Create a new task in Todoist with optional due date and priority. Example: create_task(content='Review PR #123', due_string='tomorrow 5pm', priority=2) creates a medium-priority task due tomorrow.",
+      "human_reviewed": true,
+      "review_notes": "Reviewed by Snowmaker 2026-03-09"
+    }
+  ]
+}

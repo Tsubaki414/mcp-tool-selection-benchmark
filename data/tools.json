@@ -1,0 +1,1099 @@
+{
+  "version": "3.0",
+  "generated": "2026-03-09",
+  "total_tools": 52,
+  "clusters": [
+    "dex_swap",
+    "lending",
+    "portfolio",
+    "bridging",
+    "file_ops",
+    "web_fetch",
+    "search",
+    "data_query",
+    "notification",
+    "calendar"
+  ],
+  "tools": [
+    {
+      "id": "uniswap_swap",
+      "name": "swap_tokens",
+      "cluster": "dex_swap",
+      "description": "Swap tokens on Uniswap V3. Supports all ERC20 tokens on Ethereum mainnet and L2s. Automatically finds the best route and handles slippage protection.",
+      "parameters": {
+        "fromToken": {
+          "type": "string",
+          "description": "Token address or symbol to swap from"
+        },
+        "toToken": {
+          "type": "string",
+          "description": "Token address or symbol to swap to"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Amount to swap in token units"
+        },
+        "slippageTolerance": {
+          "type": "number",
+          "description": "Max slippage percentage (default 0.5)"
+        }
+      },
+      "source": "github:Uniswap/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "1inch_swap",
+      "name": "swap",
+      "cluster": "dex_swap",
+      "description": "Swap tokens using 1inch aggregator for best rates across DEXs.",
+      "parameters": {
+        "src": {
+          "type": "string",
+          "description": "Source token address"
+        },
+        "dst": {
+          "type": "string",
+          "description": "Destination token address"
+        },
+        "amount": {
+          "type": "string",
+          "description": "Amount in wei"
+        },
+        "from": {
+          "type": "string",
+          "description": "Wallet address"
+        }
+      },
+      "source": "github:1inch/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "paraswap_swap",
+      "name": "get_swap_quote",
+      "cluster": "dex_swap",
+      "description": "Get optimal swap route and execute token swaps via ParaSwap aggregator.",
+      "parameters": {
+        "srcToken": {
+          "type": "string"
+        },
+        "destToken": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "network": {
+          "type": "number",
+          "description": "Chain ID"
+        }
+      },
+      "source": "github:paraswap/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "jupiter_swap",
+      "name": "swap_solana",
+      "cluster": "dex_swap",
+      "description": "Swap SPL tokens on Solana using Jupiter aggregator.",
+      "parameters": {
+        "inputMint": {
+          "type": "string"
+        },
+        "outputMint": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "slippageBps": {
+          "type": "number"
+        }
+      },
+      "source": "github:jup-ag/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "odos_swap",
+      "name": "swap_route",
+      "cluster": "dex_swap",
+      "description": "Smart order routing for token swaps across multiple DEXs.",
+      "parameters": {
+        "inputToken": {
+          "type": "string"
+        },
+        "outputToken": {
+          "type": "string"
+        },
+        "inputAmount": {
+          "type": "string"
+        },
+        "chainId": {
+          "type": "number"
+        }
+      },
+      "source": "github:odos-xyz/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "kyberswap",
+      "name": "execute_swap",
+      "cluster": "dex_swap",
+      "description": "Token swap execution through KyberSwap with dynamic routing.",
+      "parameters": {
+        "tokenIn": {
+          "type": "string"
+        },
+        "tokenOut": {
+          "type": "string"
+        },
+        "amountIn": {
+          "type": "string"
+        }
+      },
+      "source": "github:KyberNetwork/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "aave_deposit",
+      "name": "supply",
+      "cluster": "lending",
+      "description": "Supply assets to Aave lending pool to earn interest.",
+      "parameters": {
+        "asset": {
+          "type": "string",
+          "description": "Asset address to supply"
+        },
+        "amount": {
+          "type": "string",
+          "description": "Amount to supply"
+        },
+        "onBehalfOf": {
+          "type": "string",
+          "description": "Address to receive aTokens"
+        }
+      },
+      "source": "github:aave/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "aave_borrow",
+      "name": "borrow",
+      "cluster": "lending",
+      "description": "Borrow assets from Aave using supplied collateral.",
+      "parameters": {
+        "asset": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "interestRateMode": {
+          "type": "number",
+          "description": "1 for stable, 2 for variable"
+        }
+      },
+      "source": "github:aave/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "compound_supply",
+      "name": "supply_collateral",
+      "cluster": "lending",
+      "description": "Supply assets to Compound III to earn interest and use as collateral.",
+      "parameters": {
+        "asset": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string",
+          "description": " (uint256 as string)"
+        }
+      },
+      "source": "github:compound-finance/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "morpho_deposit",
+      "name": "deposit",
+      "cluster": "lending",
+      "description": "Deposit into Morpho optimized lending pools for better rates.",
+      "parameters": {
+        "marketId": {
+          "type": "string"
+        },
+        "assets": {
+          "type": "string",
+          "description": " (uint256 as string)"
+        },
+        "receiver": {
+          "type": "string"
+        }
+      },
+      "source": "github:morpho-labs/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "spark_lend",
+      "name": "supply",
+      "cluster": "lending",
+      "description": "Supply assets to Spark Protocol (MakerDAO's lending arm).",
+      "parameters": {
+        "asset": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        }
+      },
+      "source": "github:sparkprotocol/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "zapper_balance",
+      "name": "get_portfolio",
+      "cluster": "portfolio",
+      "description": "Get complete DeFi portfolio breakdown across all protocols and chains.",
+      "parameters": {
+        "address": {
+          "type": "string",
+          "description": "Wallet address to query"
+        },
+        "networks": {
+          "type": "array",
+          "description": "Networks to include"
+        }
+      },
+      "source": "github:zapper-fi/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "debank_portfolio",
+      "name": "get_user_portfolio",
+      "cluster": "portfolio",
+      "description": "Comprehensive portfolio tracking with protocol positions and NFTs.",
+      "parameters": {
+        "id": {
+          "type": "string",
+          "description": "Wallet address"
+        },
+        "chain_id": {
+          "type": "string"
+        }
+      },
+      "source": "github:debank/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "zerion_balance",
+      "name": "get_wallet_assets",
+      "cluster": "portfolio",
+      "description": "Track wallet assets and DeFi positions in real-time.",
+      "parameters": {
+        "address": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string",
+          "default": "usd"
+        }
+      },
+      "source": "github:zerion/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "defisaver_monitor",
+      "name": "get_position_health",
+      "cluster": "portfolio",
+      "description": "Monitor DeFi position health and liquidation risk across protocols.",
+      "parameters": {
+        "protocol": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      },
+      "source": "github:defisaver/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "instadapp_portfolio",
+      "name": "get_dsa_positions",
+      "cluster": "portfolio",
+      "description": "Query Instadapp Smart Account positions and available actions.",
+      "parameters": {
+        "dsaAddress": {
+          "type": "string"
+        }
+      },
+      "source": "github:instadapp/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "stargate_bridge",
+      "name": "bridge_tokens",
+      "cluster": "bridging",
+      "description": "Bridge tokens across chains using Stargate's unified liquidity pools.",
+      "parameters": {
+        "srcChainId": {
+          "type": "number"
+        },
+        "dstChainId": {
+          "type": "number"
+        },
+        "token": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        }
+      },
+      "source": "github:stargate-protocol/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "across_bridge",
+      "name": "deposit_for_bridge",
+      "cluster": "bridging",
+      "description": "Fast cross-chain token transfers via Across Protocol.",
+      "parameters": {
+        "originChainId": {
+          "type": "number"
+        },
+        "destinationChainId": {
+          "type": "number"
+        },
+        "inputToken": {
+          "type": "string"
+        },
+        "outputToken": {
+          "type": "string"
+        },
+        "inputAmount": {
+          "type": "string"
+        }
+      },
+      "source": "github:across-protocol/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "hop_bridge",
+      "name": "send_tokens",
+      "cluster": "bridging",
+      "description": "Bridge tokens between L2s and Ethereum mainnet via Hop.",
+      "parameters": {
+        "token": {
+          "type": "string"
+        },
+        "sourceNetwork": {
+          "type": "string"
+        },
+        "destNetwork": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        }
+      },
+      "source": "github:hop-protocol/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "socket_bridge",
+      "name": "get_bridge_quote",
+      "cluster": "bridging",
+      "description": "Aggregate bridge quotes and execute optimal cross-chain transfers.",
+      "parameters": {
+        "fromChainId": {
+          "type": "number"
+        },
+        "toChainId": {
+          "type": "number"
+        },
+        "fromTokenAddress": {
+          "type": "string"
+        },
+        "toTokenAddress": {
+          "type": "string"
+        },
+        "fromAmount": {
+          "type": "string"
+        }
+      },
+      "source": "github:socket-dot-tech/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "layerzero_bridge",
+      "name": "send_omnichain",
+      "cluster": "bridging",
+      "description": "Send tokens or messages across chains using LayerZero protocol.",
+      "parameters": {
+        "dstChainId": {
+          "type": "number"
+        },
+        "payload": {
+          "type": "string"
+        },
+        "adapterParams": {
+          "type": "string"
+        }
+      },
+      "source": "github:LayerZero-Labs/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "mcp_filesystem",
+      "name": "read_file",
+      "cluster": "file_ops",
+      "description": "Read the complete contents of a file from the file system. Only works within allowed directories.",
+      "parameters": {
+        "path": {
+          "type": "string",
+          "description": "Path to the file to read"
+        }
+      },
+      "source": "github:modelcontextprotocol/servers/filesystem",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "mcp_filesystem_write",
+      "name": "write_file",
+      "cluster": "file_ops",
+      "description": "Create a new file or overwrite an existing file with the provided content.",
+      "parameters": {
+        "path": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "source": "github:modelcontextprotocol/servers/filesystem",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "mcp_filesystem_search",
+      "name": "search_files",
+      "cluster": "file_ops",
+      "description": "Search for files matching a pattern in the allowed directories.",
+      "parameters": {
+        "path": {
+          "type": "string",
+          "description": "Starting directory"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Glob pattern to match"
+        }
+      },
+      "source": "github:modelcontextprotocol/servers/filesystem",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "desktop_commander_file",
+      "name": "file_operation",
+      "cluster": "file_ops",
+      "description": "Perform file operations including read, write, copy, move, delete on local filesystem.",
+      "parameters": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "read",
+            "write",
+            "copy",
+            "move",
+            "delete"
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "destination": {
+          "type": "string"
+        }
+      },
+      "source": "github:wonderwhy-er/DesktopCommanderMCP",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "fs_extra_ops",
+      "name": "manage_files",
+      "cluster": "file_ops",
+      "description": "Extended file system operations with recursive directory handling and file watching.",
+      "parameters": {
+        "action": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "destination": {
+          "type": "string"
+        }
+      },
+      "source": "github:nicholasjon/mcp-fs-extra",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "mcp_fetch",
+      "name": "fetch",
+      "cluster": "web_fetch",
+      "description": "Fetches a URL from the internet and extracts its contents as markdown.",
+      "parameters": {
+        "url": {
+          "type": "string",
+          "description": "URL to fetch"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Maximum number of characters to return"
+        },
+        "start_index": {
+          "type": "integer",
+          "description": "Start content from this character index"
+        }
+      },
+      "source": "github:modelcontextprotocol/servers/fetch",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "firecrawl_scrape",
+      "name": "scrape_url",
+      "cluster": "web_fetch",
+      "description": "Scrape a single URL with Firecrawl. Handles JavaScript rendering and returns clean markdown.",
+      "parameters": {
+        "url": {
+          "type": "string"
+        },
+        "formats": {
+          "type": "array",
+          "description": "Output formats: markdown, html, rawHtml"
+        }
+      },
+      "source": "github:mendableai/firecrawl-mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "browserbase_navigate",
+      "name": "navigate",
+      "cluster": "web_fetch",
+      "description": "Navigate to a URL in a cloud browser session and extract page content.",
+      "parameters": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "source": "github:browserbase/mcp-server-browserbase",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "playwright_fetch",
+      "name": "browser_navigate",
+      "cluster": "web_fetch",
+      "description": "Navigate browser to URL and capture page content including dynamic JavaScript.",
+      "parameters": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "source": "github:executeautomation/mcp-playwright",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "jina_reader",
+      "name": "read_url",
+      "cluster": "web_fetch",
+      "description": "Convert any URL to LLM-friendly markdown using Jina Reader API.",
+      "parameters": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "source": "github:jina-ai/reader-mcp",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "brave_search",
+      "name": "brave_web_search",
+      "cluster": "search",
+      "description": "Performs a web search using the Brave Search API, returning relevant results.",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Search query"
+        },
+        "count": {
+          "type": "number",
+          "description": "Number of results (max 20)"
+        }
+      },
+      "source": "github:brave/brave-search-mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "exa_search",
+      "name": "search",
+      "cluster": "search",
+      "description": "Search the web using Exa's neural search for highly relevant results.",
+      "parameters": {
+        "query": {
+          "type": "string"
+        },
+        "numResults": {
+          "type": "number"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "neural",
+            "keyword"
+          ]
+        }
+      },
+      "source": "github:exa-labs/exa-mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "tavily_search",
+      "name": "search",
+      "cluster": "search",
+      "description": "AI-optimized search engine that returns concise, relevant answers.",
+      "parameters": {
+        "query": {
+          "type": "string"
+        },
+        "search_depth": {
+          "type": "string",
+          "enum": [
+            "basic",
+            "advanced"
+          ]
+        },
+        "max_results": {
+          "type": "integer"
+        }
+      },
+      "source": "github:tavily-ai/tavily-mcp",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "perplexity_search",
+      "name": "perplexity_search",
+      "cluster": "search",
+      "description": "Real-time web search powered by Perplexity Sonar API with source citations.",
+      "parameters": {
+        "query": {
+          "type": "string"
+        }
+      },
+      "source": "github:ppl-ai/modelcontextprotocol",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "serper_search",
+      "name": "google_search",
+      "cluster": "search",
+      "description": "Google search results via Serper API with structured data extraction.",
+      "parameters": {
+        "q": {
+          "type": "string"
+        },
+        "num": {
+          "type": "number"
+        }
+      },
+      "source": "github:nicholasjon/mcp-serper",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "kagi_search",
+      "name": "search",
+      "cluster": "search",
+      "description": "High-quality ad-free search using Kagi's premium search index.",
+      "parameters": {
+        "query": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        }
+      },
+      "source": "github:kagisearch/kagimcp",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "sqlite_query",
+      "name": "read_query",
+      "cluster": "data_query",
+      "description": "Execute a SELECT query on the SQLite database.",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "SELECT SQL query to execute"
+        }
+      },
+      "source": "github:modelcontextprotocol/servers/sqlite",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "postgres_query",
+      "name": "query",
+      "cluster": "data_query",
+      "description": "Run a read-only SQL query against the PostgreSQL database.",
+      "parameters": {
+        "sql": {
+          "type": "string"
+        }
+      },
+      "source": "github:modelcontextprotocol/servers/postgres",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "mysql_query",
+      "name": "execute_query",
+      "cluster": "data_query",
+      "description": "Execute SQL queries against MySQL database.",
+      "parameters": {
+        "query": {
+          "type": "string"
+        }
+      },
+      "source": "github:benborla/mcp-server-mysql",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "clickhouse_query",
+      "name": "query",
+      "cluster": "data_query",
+      "description": "Execute analytical queries on ClickHouse for fast OLAP workloads.",
+      "parameters": {
+        "query": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string",
+          "default": "JSON"
+        }
+      },
+      "source": "github:ClickHouse/mcp-clickhouse",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "bigquery_query",
+      "name": "run_query",
+      "cluster": "data_query",
+      "description": "Execute queries on Google BigQuery data warehouse.",
+      "parameters": {
+        "query": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        }
+      },
+      "source": "github:ergut/mcp-bigquery-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "slack_send",
+      "name": "send_message",
+      "cluster": "notification",
+      "description": "Send a message to a Slack channel.",
+      "parameters": {
+        "channel": {
+          "type": "string",
+          "description": "Channel ID or name"
+        },
+        "text": {
+          "type": "string",
+          "description": "Message text"
+        }
+      },
+      "source": "github:modelcontextprotocol/servers/slack",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "gmail_send",
+      "name": "send_email",
+      "cluster": "notification",
+      "description": "Send an email via Gmail API.",
+      "parameters": {
+        "to": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        }
+      },
+      "source": "github:arpitbhayani/mcp-gmail",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "telegram_send",
+      "name": "send_message",
+      "cluster": "notification",
+      "description": "Send messages to Telegram chats or channels via bot API.",
+      "parameters": {
+        "chat_id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "source": "github:nicholasjon/mcp-telegram",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "ntfy_notify",
+      "name": "publish",
+      "cluster": "notification",
+      "description": "Send push notifications via ntfy.sh to any device.",
+      "parameters": {
+        "topic": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "source": "github:ntfy/mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "pushover_send",
+      "name": "send_notification",
+      "cluster": "notification",
+      "description": "Send push notifications to iOS/Android devices via Pushover.",
+      "parameters": {
+        "message": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "number"
+        }
+      },
+      "source": "github:nicholasjon/mcp-pushover",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "gcal_create",
+      "name": "create_event",
+      "cluster": "calendar",
+      "description": "Create a new event in Google Calendar.",
+      "parameters": {
+        "summary": {
+          "type": "string",
+          "description": "Event title"
+        },
+        "start": {
+          "type": "string",
+          "description": "Start time ISO8601"
+        },
+        "end": {
+          "type": "string",
+          "description": "End time ISO8601"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "source": "github:nicholasjon/mcp-gcal",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "gcal_list",
+      "name": "list_events",
+      "cluster": "calendar",
+      "description": "List upcoming events from Google Calendar.",
+      "parameters": {
+        "timeMin": {
+          "type": "string"
+        },
+        "timeMax": {
+          "type": "string"
+        },
+        "maxResults": {
+          "type": "number"
+        }
+      },
+      "source": "github:nicholasjon/mcp-gcal",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "todoist_create",
+      "name": "create_task",
+      "cluster": "calendar",
+      "description": "Create a new task in Todoist with optional due date and priority.",
+      "parameters": {
+        "content": {
+          "type": "string",
+          "description": "Task description"
+        },
+        "due_string": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "number"
+        }
+      },
+      "source": "github:abhiz123/todoist-mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "linear_create",
+      "name": "create_issue",
+      "cluster": "calendar",
+      "description": "Create a new issue in Linear project management tool.",
+      "parameters": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "number"
+        }
+      },
+      "source": "github:jerhadf/linear-mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    },
+    {
+      "id": "notion_task",
+      "name": "create_page",
+      "cluster": "calendar",
+      "description": "Create a new page/task in Notion database.",
+      "parameters": {
+        "parent": {
+          "type": "object"
+        },
+        "properties": {
+          "type": "object"
+        }
+      },
+      "source": "github:makenotion/notion-mcp-server",
+      "is_variant": false,
+      "variant_of": null,
+      "variant_feature": null
+    }
+  ]
+}

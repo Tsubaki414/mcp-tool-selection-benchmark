@@ -1,0 +1,352 @@
+# MCP Selection Benchmark Tasks v3
+# 50 tasks across 10 clusters
+# Tier distribution per cluster: T1 (1-2), T2 (2-3), T3 (1-2)
+
+version: "3.0"
+generated: "2026-03-09"
+
+tasks:
+  # ============================================
+  # CLUSTER: dex_swap (6 tools)
+  # ============================================
+  - id: dex_swap_t1_01
+    cluster: dex_swap
+    tier: T1
+    prompt: "Swap exactly 100 USDC to ETH on Uniswap V3 with 0.5% slippage tolerance"
+    notes: "Direct task - explicitly mentions Uniswap"
+    
+  - id: dex_swap_t2_01
+    cluster: dex_swap
+    tier: T2
+    prompt: "I want to exchange my stablecoins for ETH with the lowest fees possible"
+    notes: "Ambiguous - multiple DEX aggregators could work"
+    
+  - id: dex_swap_t2_02
+    cluster: dex_swap
+    tier: T2
+    prompt: "Convert 5000 USDT to WBTC, find me the best rate"
+    notes: "Ambiguous - needs aggregator but doesn't specify which"
+    
+  - id: dex_swap_t3_01
+    cluster: dex_swap
+    tier: T3
+    prompt: "Get me the optimal swap route for 10000 USDC to ETH across all DEXs"
+    notes: "Head-to-head between aggregators"
+    
+  - id: dex_swap_t3_02
+    cluster: dex_swap
+    tier: T3
+    prompt: "Execute a token swap with minimal price impact for a large trade"
+    notes: "Adversarial - tests which tool handles large trades best"
+
+  # ============================================
+  # CLUSTER: lending (5 tools)
+  # ============================================
+  - id: lending_t1_01
+    cluster: lending
+    tier: T1
+    prompt: "Deposit 10 ETH into Aave V3 to earn interest"
+    notes: "Direct - explicitly mentions Aave"
+    
+  - id: lending_t2_01
+    cluster: lending
+    tier: T2
+    prompt: "I want to earn yield on my USDC, what are my best options?"
+    notes: "Ambiguous - multiple lending protocols apply"
+    
+  - id: lending_t2_02
+    cluster: lending
+    tier: T2
+    prompt: "Borrow DAI against my ETH collateral with the best rates"
+    notes: "Ambiguous - doesn't specify protocol"
+    
+  - id: lending_t2_03
+    cluster: lending
+    tier: T2
+    prompt: "Supply my assets to a lending protocol with optimized yield"
+    notes: "Vague - could be any lending tool"
+    
+  - id: lending_t3_01
+    cluster: lending
+    tier: T3
+    prompt: "Deposit stablecoins into a lending pool with the highest APY"
+    notes: "Head-to-head between Aave, Compound, Morpho"
+
+  # ============================================
+  # CLUSTER: portfolio (5 tools)
+  # ============================================
+  - id: portfolio_t1_01
+    cluster: portfolio
+    tier: T1
+    prompt: "Use Zapper to show me my complete DeFi portfolio across all chains"
+    notes: "Direct - explicitly mentions Zapper"
+    
+  - id: portfolio_t2_01
+    cluster: portfolio
+    tier: T2
+    prompt: "What's my total balance across all my crypto holdings?"
+    notes: "Ambiguous - any portfolio tool works"
+    
+  - id: portfolio_t2_02
+    cluster: portfolio
+    tier: T2
+    prompt: "Show me my DeFi positions and check if any are at risk of liquidation"
+    notes: "Needs portfolio + risk monitoring"
+    
+  - id: portfolio_t3_01
+    cluster: portfolio
+    tier: T3
+    prompt: "Get a comprehensive breakdown of my wallet's assets and protocol positions"
+    notes: "Head-to-head between Zapper, DeBank, Zerion"
+    
+  - id: portfolio_t3_02
+    cluster: portfolio
+    tier: T3
+    prompt: "Track my multi-chain portfolio with detailed protocol exposure"
+    notes: "Adversarial - tests feature completeness"
+
+  # ============================================
+  # CLUSTER: bridging (5 tools)
+  # ============================================
+  - id: bridging_t1_01
+    cluster: bridging
+    tier: T1
+    prompt: "Bridge 1000 USDC from Ethereum to Arbitrum using Stargate"
+    notes: "Direct - explicitly mentions Stargate"
+    
+  - id: bridging_t2_01
+    cluster: bridging
+    tier: T2
+    prompt: "I need to move my tokens from mainnet to Optimism quickly"
+    notes: "Ambiguous - any bridge works, speed emphasized"
+    
+  - id: bridging_t2_02
+    cluster: bridging
+    tier: T2
+    prompt: "Transfer ETH from Arbitrum to Base with lowest fees"
+    notes: "Ambiguous - fee optimization needed"
+    
+  - id: bridging_t3_01
+    cluster: bridging
+    tier: T3
+    prompt: "Find the cheapest and fastest way to bridge assets cross-chain"
+    notes: "Head-to-head between bridge aggregators"
+    
+  - id: bridging_t3_02
+    cluster: bridging
+    tier: T3
+    prompt: "Execute a cross-chain transfer with the best route optimization"
+    notes: "Adversarial - tests routing quality"
+
+  # ============================================
+  # CLUSTER: file_ops (5 tools)
+  # ============================================
+  - id: file_ops_t1_01
+    cluster: file_ops
+    tier: T1
+    prompt: "Read the contents of the file at /home/user/config.json"
+    notes: "Direct - simple file read"
+    
+  - id: file_ops_t2_01
+    cluster: file_ops
+    tier: T2
+    prompt: "Find all markdown files in my project directory"
+    notes: "Ambiguous - search operation"
+    
+  - id: file_ops_t2_02
+    cluster: file_ops
+    tier: T2
+    prompt: "Create a new file with this content and save it"
+    notes: "Write operation, tool choice varies"
+    
+  - id: file_ops_t3_01
+    cluster: file_ops
+    tier: T3
+    prompt: "Search for files matching a pattern and read their contents"
+    notes: "Combined search + read operation"
+    
+  - id: file_ops_t3_02
+    cluster: file_ops
+    tier: T3
+    prompt: "Manage multiple files - copy, move, and organize them"
+    notes: "Complex multi-operation task"
+
+  # ============================================
+  # CLUSTER: web_fetch (5 tools)
+  # ============================================
+  - id: web_fetch_t1_01
+    cluster: web_fetch
+    tier: T1
+    prompt: "Fetch the content from https://example.com and convert it to markdown"
+    notes: "Direct - basic URL fetch"
+    
+  - id: web_fetch_t2_01
+    cluster: web_fetch
+    tier: T2
+    prompt: "Get the main content from this webpage, it has a lot of JavaScript"
+    notes: "Ambiguous - may need browser rendering"
+    
+  - id: web_fetch_t2_02
+    cluster: web_fetch
+    tier: T2
+    prompt: "Extract the article text from this news website"
+    notes: "Content extraction, multiple tools work"
+    
+  - id: web_fetch_t3_01
+    cluster: web_fetch
+    tier: T3
+    prompt: "Scrape this dynamic webpage and return clean structured content"
+    notes: "Head-to-head between Firecrawl, Browserbase, Playwright"
+    
+  - id: web_fetch_t3_02
+    cluster: web_fetch
+    tier: T3
+    prompt: "Navigate to a URL and capture all the page content including dynamic elements"
+    notes: "Adversarial - tests JS rendering capability"
+
+  # ============================================
+  # CLUSTER: search (6 tools)
+  # ============================================
+  - id: search_t1_01
+    cluster: search
+    tier: T1
+    prompt: "Search the web using Brave Search for 'latest AI developments'"
+    notes: "Direct - explicitly mentions Brave"
+    
+  - id: search_t2_01
+    cluster: search
+    tier: T2
+    prompt: "Find information about the new iPhone release date"
+    notes: "Ambiguous - any search engine works"
+    
+  - id: search_t2_02
+    cluster: search
+    tier: T2
+    prompt: "Search for recent news about climate change policies"
+    notes: "News search, multiple tools apply"
+    
+  - id: search_t2_03
+    cluster: search
+    tier: T2
+    prompt: "Look up technical documentation for React hooks"
+    notes: "Technical search, quality varies by tool"
+    
+  - id: search_t3_01
+    cluster: search
+    tier: T3
+    prompt: "Find the most relevant and accurate information on this topic"
+    notes: "Head-to-head quality comparison"
+    
+  - id: search_t3_02
+    cluster: search
+    tier: T3
+    prompt: "Search with AI-optimized results that include source citations"
+    notes: "Adversarial - tests AI search features"
+
+  # ============================================
+  # CLUSTER: data_query (5 tools)
+  # ============================================
+  - id: data_query_t1_01
+    cluster: data_query
+    tier: T1
+    prompt: "Run this SQL query on the SQLite database: SELECT * FROM users LIMIT 10"
+    notes: "Direct - explicitly mentions SQLite"
+    
+  - id: data_query_t2_01
+    cluster: data_query
+    tier: T2
+    prompt: "Query the database to get all orders from last month"
+    notes: "Ambiguous - database type not specified"
+    
+  - id: data_query_t2_02
+    cluster: data_query
+    tier: T2
+    prompt: "Analyze the sales data and show me the top products"
+    notes: "Analytical query, multiple DBs work"
+    
+  - id: data_query_t3_01
+    cluster: data_query
+    tier: T3
+    prompt: "Execute a complex analytical query with aggregations and joins"
+    notes: "Head-to-head between ClickHouse, BigQuery, Postgres"
+    
+  - id: data_query_t3_02
+    cluster: data_query
+    tier: T3
+    prompt: "Run fast OLAP queries on large datasets"
+    notes: "Adversarial - tests OLAP capability"
+
+  # ============================================
+  # CLUSTER: notification (5 tools)
+  # ============================================
+  - id: notification_t1_01
+    cluster: notification
+    tier: T1
+    prompt: "Send a message to the #general channel on Slack"
+    notes: "Direct - explicitly mentions Slack"
+    
+  - id: notification_t2_01
+    cluster: notification
+    tier: T2
+    prompt: "Notify me when this task is complete"
+    notes: "Ambiguous - channel not specified"
+    
+  - id: notification_t2_02
+    cluster: notification
+    tier: T2
+    prompt: "Send an alert to my phone about this important update"
+    notes: "Push notification, multiple services work"
+    
+  - id: notification_t3_01
+    cluster: notification
+    tier: T3
+    prompt: "Deliver this message to the team through the fastest channel"
+    notes: "Head-to-head between Slack, email, push"
+    
+  - id: notification_t3_02
+    cluster: notification
+    tier: T3
+    prompt: "Send a notification with high priority to multiple recipients"
+    notes: "Adversarial - tests priority/batch features"
+
+  # ============================================
+  # CLUSTER: calendar (5 tools)
+  # ============================================
+  - id: calendar_t1_01
+    cluster: calendar
+    tier: T1
+    prompt: "Create a meeting in Google Calendar for tomorrow at 2pm"
+    notes: "Direct - explicitly mentions Google Calendar"
+    
+  - id: calendar_t2_01
+    cluster: calendar
+    tier: T2
+    prompt: "Schedule a reminder to follow up on this project next week"
+    notes: "Ambiguous - could be calendar or task tool"
+    
+  - id: calendar_t2_02
+    cluster: calendar
+    tier: T2
+    prompt: "Add a task to review the quarterly report by Friday"
+    notes: "Task creation, multiple tools work"
+    
+  - id: calendar_t3_01
+    cluster: calendar
+    tier: T3
+    prompt: "Create a tracked task with deadline and priority"
+    notes: "Head-to-head between Todoist, Linear, Notion"
+    
+  - id: calendar_t3_02
+    cluster: calendar
+    tier: T3
+    prompt: "Set up a recurring event with reminders"
+    notes: "Adversarial - tests recurring event support"
+
+# Summary statistics
+metadata:
+  total_tasks: 50
+  tasks_per_cluster: 5
+  tier_distribution:
+    T1: 10  # 2 per cluster
+    T2: 25  # 2-3 per cluster  
+    T3: 15  # 2 per cluster (adjusted to 15 total)
