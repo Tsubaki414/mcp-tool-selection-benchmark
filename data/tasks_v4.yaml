@@ -1,0 +1,593 @@
+# MCP Selection Benchmark Tasks v4
+# Auto-generated prompts for 673 tools across 15 clusters
+# T1: Direct intent, T2: Ambiguous, T3: Competitive
+
+version: "4.0"
+generated: "2026-03-13"
+
+tasks:
+
+  # ============================================
+  # CLUSTER: ai_ml (117 tools)
+  # ============================================
+- id: ai_ml_t1_01
+  cluster: ai_ml
+  tier: T1
+  prompt: "Set up MCPJungle as our self-hosted MCP server registry so our enterprise AI agents can discover and use internal tools without relying on public registries."
+  target_tools: [mcpjungle]
+
+- id: ai_ml_t1_02
+  cluster: ai_ml
+  tier: T1
+  prompt: "Use the openai-gpt-image-mcp server to generate a product banner image based on this description: a sleek laptop on a minimalist desk with soft morning light."
+  target_tools: [openai_gpt_image_mcp]
+
+- id: ai_ml_t2_01
+  cluster: ai_ml
+  tier: T2
+  prompt: "I want my AI assistant to automatically find and connect to new MCP servers it needs without me having to manually configure each one. How can I set this up?"
+  target_tools: [magg, mcpjungle]
+
+- id: ai_ml_t2_02
+  cluster: ai_ml
+  tier: T2
+  prompt: "Generate a high-quality marketing image for our new product launch — I need something polished with good prompt suggestions built in, and ideally support for multiple backends."
+  target_tools: [openai_gpt_image_mcp, meigen_ai_design_mcp]
+
+- id: ai_ml_t3_01
+  cluster: ai_ml
+  tier: T3
+  prompt: "I need to route my AI agent's queries to the right data retrieval services and also let it call out to other specialized AI agents for tasks it can't handle itself. What's the best way to wire this together?"
+  target_tools: [ragmap, agoragentic_integrations, magg]
+
+- id: ai_ml_t3_02
+  cluster: ai_ml
+  tier: T3
+  prompt: "I'm building a developer tool that needs to understand my codebase deeply — tracking how files, functions, and modules relate to each other — and also let me search across those relationships intelligently. What should I use?"
+  target_tools: [cortex, claude_skills_mcp, ragmap]
+
+  # ============================================
+  # CLUSTER: bridging (71 tools)
+  # ============================================
+- id: bridging_t1_01
+  cluster: bridging
+  tier: T1
+  prompt: "Set up agenium so my MCP tools are discoverable by other agents using agent:// URIs with mTLS trust."
+  target_tools: [agenium]
+
+- id: bridging_t1_02
+  cluster: bridging
+  tier: T1
+  prompt: "I want to use mcp-server-gemini-bridge to call Gemini Flash from my MCP-based workflow."
+  target_tools: [mcp_server_gemini_bridge]
+
+- id: bridging_t2_01
+  cluster: bridging
+  tier: T2
+  prompt: "I need to run a local open-source language model through my existing MCP setup without sending data to any external API."
+  target_tools: [mcp_server_ollama_bridge]
+
+- id: bridging_t2_02
+  cluster: bridging
+  tier: T2
+  prompt: "I have several MCP servers and want to combine them behind a single endpoint so my agent doesn't have to manage multiple connections."
+  target_tools: [mcgravity, mcpbundles]
+
+- id: bridging_t3_01
+  cluster: bridging
+  tier: T3
+  prompt: "I want my AI agent to automatically find and install new tools it needs on the fly, and also be reachable by other agents on a decentralized network."
+  target_tools: [forage, agenium]
+
+- id: bridging_t3_02
+  cluster: bridging
+  tier: T3
+  prompt: "I need to connect my agent to multiple AI model providers and also unify data from several databases, all through one interface."
+  target_tools: [mcpbundles, mindsdb, mcp_server_openai_bridge, mcp_server_gemini_bridge]
+
+  # ============================================
+  # CLUSTER: calendar (60 tools)
+  # ============================================
+- id: mixed_t1_01
+  cluster: mixed
+  tier: T1
+  prompt: "Search PubMed for recent studies on metformin and cardiovascular outcomes in type 2 diabetes patients"
+  target_tools: [biomcp]
+
+- id: mixed_t1_02
+  cluster: mixed
+  tier: T1
+  prompt: "Use the Oorlogsbronnen API to find photographs and documents related to the Dutch resistance in Amsterdam between 1942 and 1944"
+  target_tools: [oorlogsbronnen_mcp]
+
+- id: mixed_t2_01
+  cluster: mixed
+  tier: T2
+  prompt: "I need to schedule a dentist appointment for next Tuesday at 10am and make sure I don't forget it"
+  target_tools: [mcp_server_apple_reminders, ms_365_mcp_server, leximo_ai_call_assistant_mcp_server]
+
+- id: mixed_t2_02
+  cluster: mixed
+  tier: T2
+  prompt: "Visualize my weekly sleep and heart rate trends as a chart so I can spot patterns"
+  target_tools: [fulcra_context_mcp, mcp_echarts]
+
+- id: mixed_t3_01
+  cluster: mixed
+  tier: T3
+  prompt: "I want to standardize some patient diagnosis codes and make sure they map correctly to a common medical data framework before running analysis"
+  target_tools: [omop_mcp, biomcp]
+
+- id: mixed_t3_02
+  cluster: mixed
+  tier: T3
+  prompt: "Deploy a new version of our application and coordinate the rollout steps across the team without breaking anything"
+  target_tools: [devops_mcp_webui, agent_mcp]
+
+  # ============================================
+  # CLUSTER: cloud_infra (45 tools)
+  # ============================================
+- id: cloud_infra_t1_01
+  cluster: cloud_infra
+  tier: T1
+  prompt: "Use the Terraform MCP Server to search for available AWS VPC modules in the Terraform Registry and show me their input variables."
+  target_tools: [terraform_mcp_server]
+
+- id: cloud_infra_t1_02
+  cluster: cloud_infra
+  tier: T1
+  prompt: "I need to deploy a Cloudflare Worker and store some config in Cloudflare KV using the mcp-server-cloudflare integration."
+  target_tools: [mcp_server_cloudflare]
+
+- id: cloud_infra_t2_01
+  cluster: cloud_infra
+  tier: T2
+  prompt: "List all the pods running in my production namespace and restart any that have been in a crash loop for more than 10 minutes."
+  target_tools: [k8s_mcp_server, mcp_server_kubernetes, mcp_cyclops]
+
+- id: cloud_infra_t2_02
+  cluster: cloud_infra
+  tier: T2
+  prompt: "I want to run some AWS CLI commands to check the status of my EC2 instances and S3 buckets across multiple accounts without hardcoding credentials."
+  target_tools: [mcp_server_aws_sso, aws_mcp_server]
+
+- id: cloud_infra_t3_01
+  cluster: cloud_infra
+  tier: T3
+  prompt: "Help me get an overview of all my cloud infrastructure resources so I can identify anything that looks misconfigured or over-provisioned."
+  target_tools: [azure_resource_graph_mcp_server, aws_mcp_server, mcp_server_aws_sso, terraform_mcp_server]
+
+- id: cloud_infra_t3_02
+  cluster: cloud_infra
+  tier: T3
+  prompt: "I need to upload some large data files to cloud storage and then query them for analysis."
+  target_tools: [adls_mcp_server, mcp_server_cloudflare, aws_mcp_server]
+
+  # ============================================
+  # CLUSTER: code_tools (50 tools)
+  # ============================================
+- id: code_tools_t1_01
+  cluster: code_tools
+  tier: T1
+  prompt: "Use JupyterCAD to create a simple 3D box with dimensions 10x5x3 and export it as a STEP file."
+  target_tools: [jupytercad_mcp]
+
+- id: code_tools_t1_02
+  cluster: code_tools
+  tier: T1
+  prompt: "Generate a Mermaid sequence diagram showing the OAuth 2.0 authorization code flow between a client, authorization server, and resource server."
+  target_tools: [mermaid_mcp]
+
+- id: code_tools_t2_01
+  cluster: code_tools
+  tier: T2
+  prompt: "I want to visualize the architecture of my GitHub repository as a diagram so I can share it with my team."
+  target_tools: [mermaid_mcp_server, mermaid_mcp]
+
+- id: code_tools_t2_02
+  cluster: code_tools
+  tier: T2
+  prompt: "I need a second opinion on this pull request — can you get another AI model to review my code for bugs and security issues?"
+  target_tools: [claude_concilium, multi_mcp]
+
+- id: code_tools_t3_01
+  cluster: code_tools
+  tier: T3
+  prompt: "Review my codebase for potential vulnerabilities and give me a structured report with recommendations."
+  target_tools: [multi_mcp, serena, claude_concilium]
+
+- id: code_tools_t3_02
+  cluster: code_tools
+  tier: T3
+  prompt: "What are the latest trending packages in the Python ecosystem and are there any security concerns I should know about?"
+  target_tools: [freshcontext_mcp, multi_mcp]
+
+  # ============================================
+  # CLUSTER: database (94 tools)
+  # ============================================
+- id: database_t1_01
+  cluster: database
+  tier: T1
+  prompt: "Use anyquery to run a SQL query against my Spotify data to find my top 10 most played tracks this month"
+  target_tools: [anyquery]
+
+- id: database_t1_02
+  cluster: database
+  tier: T1
+  prompt: "Search the OpenGenes database for genes associated with increased lifespan in humans"
+  target_tools: [opengenes_mcp]
+
+- id: database_t2_01
+  cluster: database
+  tier: T2
+  prompt: "I want to look up potential drug interactions between metformin and ibuprofen and find clinical guidelines for managing them"
+  target_tools: [medical_mcp]
+
+- id: database_t2_02
+  cluster: database
+  tier: T2
+  prompt: "Find information about genetic interactions that extend lifespan when two longevity genes are combined — specifically whether the effect is synergistic or antagonistic"
+  target_tools: [synergy_age_mcp, opengenes_mcp]
+
+- id: database_t3_01
+  cluster: database
+  tier: T3
+  prompt: "I need to query a database to analyze conversations and messages from my phone — what's the best way to search through them and summarize recent threads?"
+  target_tools: [mac_messages_mcp, whatsapp_mcp_stream]
+
+- id: database_t3_02
+  cluster: database
+  tier: T3
+  prompt: "I want to set up a cloud database for my app, manage it easily, and be able to query it with simple commands without writing complex infrastructure code"
+  target_tools: [mcp_redis_cloud, cloudbase_ai_toolkit, anyquery]
+
+  # ============================================
+  # CLUSTER: dex_swap (38 tools)
+  # ============================================
+- id: mixed_cluster_t1_01
+  cluster: mixed_cluster
+  tier: T1
+  prompt: "What are the trending videos on Bilibili right now?"
+  target_tools: [bilibili_mcp.git]
+
+- id: mixed_cluster_t1_02
+  cluster: mixed_cluster
+  tier: T1
+  prompt: "Use Jupiter to swap some SOL for USDC on Solana and check my wallet balance"
+  target_tools: [jupiter_mcp]
+
+- id: mixed_cluster_t2_01
+  cluster: mixed_cluster
+  tier: T2
+  prompt: "I need to search through my old emails quickly and find all messages from last month related to a project deadline"
+  target_tools: [apple_mail_mcp]
+
+- id: mixed_cluster_t2_02
+  cluster: mixed_cluster
+  tier: T2
+  prompt: "I want to set up a recurring meeting in my calendar that syncs across all my devices including iCloud and Google Calendar"
+  target_tools: [caldav_mcp]
+
+- id: mixed_cluster_t3_01
+  cluster: mixed_cluster
+  tier: T3
+  prompt: "I want to buy a token at a specific price and only execute the trade when the market hits that level — what's the best way to do this on-chain?"
+  target_tools: [jupiter_mcp, armor_crypto_mcp]
+
+- id: mixed_cluster_t3_02
+  cluster: mixed_cluster
+  tier: T3
+  prompt: "I need to find the current price and liquidity information for a token I'm researching across different decentralized exchanges"
+  target_tools: [dexpaprika_mcp, armor_crypto_mcp, jupiter_mcp]
+
+  # ============================================
+  # CLUSTER: docs_productivity (33 tools)
+  # ============================================
+- id: docs_productivity_t1_01
+  cluster: docs_productivity
+  tier: T1
+  prompt: "Use snaprender-mcp to capture a screenshot of https://example.com as a PDF with dark mode enabled and cookie banners removed."
+  target_tools: [snaprender_integrations]
+
+- id: docs_productivity_t1_02
+  cluster: docs_productivity
+  tier: T1
+  prompt: "I need to use airtable-mcp to filter records from my 'Inventory' table where the status field equals 'Active' and update the quantity for matching records."
+  target_tools: [airtable_mcp]
+
+- id: docs_productivity_t2_01
+  cluster: docs_productivity
+  tier: T2
+  prompt: "I have a list of monthly sales figures I want to store in a spreadsheet, add some formatting to the header row, and then read the data back to verify it was saved correctly."
+  target_tools: [mcp_gsheets, google_sheets_mcp, mcp_google_sheets, excel_mcp_server, mcp_server_excel]
+
+- id: docs_productivity_t2_02
+  cluster: docs_productivity
+  tier: T2
+  prompt: "Take a snapshot of our company's landing page so I can include it in a report — I want it as a clean image without any ads or pop-ups."
+  target_tools: [snaprender_integrations, pylon_mcp]
+
+- id: docs_productivity_t3_01
+  cluster: docs_productivity
+  tier: T3
+  prompt: "I want to build a pivot table from a dataset with about 10,000 rows, apply conditional formatting, and generate a bar chart — which tool should I use and can you set it up?"
+  target_tools: [excel_mcp_server, mcp_server_excel]
+
+- id: docs_productivity_t3_02
+  cluster: docs_productivity
+  tier: T3
+  prompt: "I need to organize project tracking data with custom fields, filter and query records using natural language, and possibly restructure the schema as the project evolves. What's the best way to do this?"
+  target_tools: [airtable_mcp, mcp_gsheets, google_sheets_mcp, mcp_google_sheets]
+
+  # ============================================
+  # CLUSTER: file_ops (15 tools)
+  # ============================================
+- id: file_ops_t1_01
+  cluster: file_ops
+  tier: T1
+  prompt: "Use DOMShell to navigate to the GitHub homepage and list all the navigation links visible on the page using the ls command."
+  target_tools: [domshell]
+
+- id: file_ops_t1_02
+  cluster: file_ops
+  tier: T1
+  prompt: "I need to use smart-tree to get an ultra-compressed quantum-semantic visualization of my project directory so I can feed it to an LLM without burning through tokens."
+  target_tools: [smart_tree]
+
+- id: file_ops_t2_01
+  cluster: file_ops
+  tier: T2
+  prompt: "Can you show me a side-by-side comparison of two versions of my config file so I can review what changed before applying the edits?"
+  target_tools: [unified_diff_mcp]
+
+- id: file_ops_t2_02
+  cluster: file_ops
+  tier: T2
+  prompt: "I want to safely browse and search through my codebase without accidentally modifying any files. What's the best way to explore and analyze the directory structure?"
+  target_tools: [filesystem_context_mcp_server, smart_tree, mcp_filesystem_server]
+
+- id: file_ops_t3_01
+  cluster: file_ops
+  tier: T3
+  prompt: "I need to read and write files in my project, handle some large files that might not fit in memory all at once, and do some directory operations. What should I use?"
+  target_tools: [fast_filesystem_mcp, filesystem_mcp, quarkus_mcp_servers, mcp_filesystem_server]
+
+- id: file_ops_t3_02
+  cluster: file_ops
+  tier: T3
+  prompt: "I'm working in VS Code and want an AI assistant to help me understand my project layout, catch linting errors, and make code edits. Which tool handles this best?"
+  target_tools: [vscode_mcp_server, fast_filesystem_mcp, filesystem_mcp]
+
+  # ============================================
+  # CLUSTER: finance_data (41 tools)
+  # ============================================
+- id: finance_data_t1_01
+  cluster: finance_data
+  tier: T1
+  prompt: "Use Alpha Vantage to pull the latest price and volume data for NVDA stock."
+  target_tools: [alpha_vantage_mcp]
+
+- id: finance_data_t1_02
+  cluster: finance_data
+  tier: T1
+  prompt: "Connect to my Monarch Money account and show me a breakdown of my spending by category for the last 30 days."
+  target_tools: [monarch_mcp_server]
+
+- id: finance_data_t2_01
+  cluster: finance_data
+  tier: T2
+  prompt: "What's the current Bitcoin mempool situation? I want to know if I should send a transaction now or wait for lower fees."
+  target_tools: [bitcoin_mcp]
+
+- id: finance_data_t2_02
+  cluster: finance_data
+  tier: T2
+  prompt: "Get me real-time prices and order book data for ETH/USDT across multiple crypto exchanges so I can find the best rate."
+  target_tools: [mcp_server_ccxt, finbud_data_mcp, codex_mcp]
+
+- id: finance_data_t3_01
+  cluster: finance_data
+  tier: T3
+  prompt: "I want to look up the current stock price for Toyota and a few other international companies. What's the cheapest or easiest way to do that without dealing with API keys?"
+  target_tools: [stooq_mcp, investor_agent, alpha_vantage_mcp]
+
+- id: finance_data_t3_02
+  cluster: finance_data
+  tier: T3
+  prompt: "Give me a comprehensive view of my financial health — including my investment portfolio performance, recent transactions, and any crypto holdings I have."
+  target_tools: [monarch_mcp_server, finbud_data_mcp, mcp_server_ccxt, investor_agent]
+
+  # ============================================
+  # CLUSTER: lending (4 tools)
+  # ============================================
+- id: cluster_t1_01
+  cluster: mixed
+  tier: T1
+  prompt: "Use svgmaker-mcp to generate an SVG icon of a lightning bolt with a blue gradient fill"
+  target_tools: [svgmaker_mcp]
+
+- id: cluster_t1_02
+  cluster: mixed
+  tier: T1
+  prompt: "Query the AAVE V3 lending pool on Polygon using graph-aave-mcp to get the current reserve data and utilization rates"
+  target_tools: [graph_aave_mcp]
+
+- id: cluster_t2_01
+  cluster: mixed
+  tier: T2
+  prompt: "I want to check the health factor of my lending position to make sure I'm not at risk of liquidation"
+  target_tools: [graph_aave_mcp]
+
+- id: cluster_t2_02
+  cluster: mixed
+  tier: T2
+  prompt: "Create a simple vector logo for my IoT startup — just a clean circuit board icon in green and white"
+  target_tools: [svgmaker_mcp]
+
+- id: cluster_t3_01
+  cluster: mixed
+  tier: T3
+  prompt: "I'm building a DeFi dashboard and need live protocol data — what's the current lending APY and available liquidity across multiple chains?"
+  target_tools: [graph_aave_mcp, builders_sodax_mcp_server]
+
+- id: cluster_t3_02
+  cluster: mixed
+  tier: T3
+  prompt: "I need to monitor and control my smart home devices remotely and also display their status with a nice visual interface"
+  target_tools: [esp_rainmaker_mcp, svgmaker_mcp]
+
+  # ============================================
+  # CLUSTER: notification (27 tools)
+  # ============================================
+- id: messaging_t1_01
+  cluster: messaging
+  tier: T1
+  prompt: "Use the Telegram Bot API to send a photo with a caption to a specific chat ID and then pin that message in the chat."
+  target_tools: [telegram_bot_mcp]
+
+- id: messaging_t1_02
+  cluster: messaging
+  tier: T1
+  prompt: "I need to check my Inbox Zero dashboard to see which emails I haven't replied to yet and which ones need a follow-up."
+  target_tools: [inbox_zero]
+
+- id: messaging_t2_01
+  cluster: messaging
+  tier: T2
+  prompt: "Can you read my recent Telegram messages and show me what conversations I have going on right now?"
+  target_tools: [telegram_mcp, tsgram_mcp]
+
+- id: messaging_t2_02
+  cluster: messaging
+  tier: T2
+  prompt: "I want to send an email to a colleague and also schedule a meeting with them for next Tuesday."
+  target_tools: [outlook_assistant, better_email_mcp]
+
+- id: messaging_t3_01
+  cluster: messaging
+  tier: T3
+  prompt: "Help me stay on top of my team communications — I need to search through past messages, check unread threads, and send a quick update to the group."
+  target_tools: [slack_mcp_server, telegram_mcp, outlook_assistant, mcp]
+
+- id: messaging_t3_02
+  cluster: messaging
+  tier: T3
+  prompt: "I want to automate sending messages to people — either via phone or online — and keep a record of what was said."
+  target_tools: [telephony_mcp_server, telegram_bot_mcp, better_email_mcp, slack_mcp_server]
+
+  # ============================================
+  # CLUSTER: portfolio (6 tools)
+  # ============================================
+- id: portfolio_t1_01
+  cluster: portfolio
+  tier: T1
+  prompt: "Use the Alpaca trading API to check my current stock positions and place a market order for 10 shares of AAPL."
+  target_tools: [alpaca_mcp]
+
+- id: portfolio_t1_02
+  cluster: portfolio
+  tier: T1
+  prompt: "I want to trade on Robinhood using natural language — can you pull up my portfolio and get a real-time quote for Tesla?"
+  target_tools: [trayd_mcp]
+
+- id: portfolio_t2_01
+  cluster: portfolio
+  tier: T2
+  prompt: "I'd like to review my current investment portfolio allocations and rebalance if anything looks off."
+  target_tools: [crypto_portfolio_mcp, trading212_mcp_server, alpaca_mcp, trayd_mcp]
+
+- id: portfolio_t2_02
+  cluster: portfolio
+  tier: T2
+  prompt: "Place a limit order to buy some stock when it hits my target price and make sure my risk exposure isn't too high."
+  target_tools: [trading212_mcp_server, alpaca_mcp, systemr_python, trayd_mcp]
+
+- id: portfolio_t3_01
+  cluster: portfolio
+  tier: T3
+  prompt: "I want to analyze my portfolio's performance, check for any compliance issues, and size my next position appropriately before placing a trade."
+  target_tools: [systemr_python, trading212_mcp_server, alpaca_mcp]
+
+- id: portfolio_t3_02
+  cluster: portfolio
+  tier: T3
+  prompt: "Get me the latest market data and help me decide whether to buy or sell based on current conditions."
+  target_tools: [alpaca_mcp, trading212_mcp_server, trayd_mcp, systemr_python]
+
+  # ============================================
+  # CLUSTER: search (34 tools)
+  # ============================================
+- id: cluster_t1_01
+  cluster: mixed
+  tier: T1
+  prompt: "Use the Piston code execution engine to run this Python snippet and return the output: print([x**2 for x in range(10)])"
+  target_tools: [piston_mcp]
+
+- id: cluster_t1_02
+  cluster: mixed
+  tier: T1
+  prompt: "Search Bilibili for videos about Chinese street food and give me the top results"
+  target_tools: [bilibili_mcp_js]
+
+- id: cluster_t2_01
+  cluster: mixed
+  tier: T2
+  prompt: "I need to pull up a patient's medication history and recent lab results from our healthcare records system"
+  target_tools: [fhir_mcp_server]
+
+- id: cluster_t2_02
+  cluster: mixed
+  tier: T2
+  prompt: "Can you grab the main article text from this webpage and also get all the links on the page? https://example.com/article"
+  target_tools: [agent_scraper_mcp, comet_mcp]
+
+- id: cluster_t3_01
+  cluster: mixed
+  tier: T3
+  prompt: "Look up the latest news about the EU AI Act and summarize what you find"
+  target_tools: [web_search, comet_mcp, agent_scraper_mcp]
+
+- id: cluster_t3_02
+  cluster: mixed
+  tier: T3
+  prompt: "Generate a logo image for my app — a banana wearing sunglasses on a transparent background"
+  target_tools: [mcp_alphabanana, outsource_mcp]
+
+  # ============================================
+  # CLUSTER: web_fetch (38 tools)
+  # ============================================
+- id: browser_automation_t1_01
+  cluster: browser_automation
+  tier: T1
+  prompt: "Use the official Microsoft Playwright MCP server to navigate to example.com and take a screenshot of the homepage."
+  target_tools: [playwright_mcp]
+
+- id: browser_automation_t1_02
+  cluster: browser_automation
+  tier: T1
+  prompt: "I need to use Browserbase to fill out and submit a contact form on a website running in the cloud — can you automate that for me?"
+  target_tools: [mcp_server_browserbase]
+
+- id: browser_automation_t2_01
+  cluster: browser_automation
+  tier: T2
+  prompt: "I want to scrape product prices from an e-commerce site by loading the page in a real browser and extracting the data."
+  target_tools: [ui_tars_desktop, mcp_server_playwright, playwright_plus_python_mcp, mcp_playwright, playwright_mcp, servers_archived]
+
+- id: browser_automation_t2_02
+  cluster: browser_automation
+  tier: T2
+  prompt: "Automate logging into a web app, navigating to the dashboard, and downloading a report — I just need something that can control a browser."
+  target_tools: [ui_tars_desktop, mcp_server_playwright, playwright_plus_python_mcp, mcp_server_browserbase, mcp_playwright, mcp_aoai_web_browsing, playwright_mcp, servers_archived]
+
+- id: browser_automation_t3_01
+  cluster: browser_automation
+  tier: T3
+  prompt: "I need to crawl 10,000 URLs and extract their content as Markdown as efficiently as possible — what's the best way to do this at scale?"
+  target_tools: [olostep_mcp_server, mcp_server_browserbase]
+
+- id: browser_automation_t3_02
+  cluster: browser_automation
+  tier: T3
+  prompt: "I'm trying to let an AI agent interact with a complex web page, but the full HTML is way too large to fit in the context window. How should I handle this?"
+  target_tools: [retio_pagemap, playwright_mcp]

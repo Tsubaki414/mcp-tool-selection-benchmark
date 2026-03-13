@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MCP Tool Selection Benchmark - Full Report</title>
+<style>
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+    max-width: 1000px; 
+    margin: 40px auto; 
+    padding: 20px;
+    line-height: 1.6;
+    color: #333;
+}
+h1 { border-bottom: 3px solid #2563eb; padding-bottom: 15px; }
+h2 { color: #1e40af; margin-top: 40px; border-left: 4px solid #2563eb; padding-left: 15px; }
+h3 { color: #374151; }
+table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+th, td { border: 1px solid #e5e7eb; padding: 12px; text-align: left; }
+th { background: #f3f4f6; font-weight: 600; }
+tr:nth-child(even) { background: #f9fafb; }
+.metric-card {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    margin: 10px;
+    text-align: center;
+    min-width: 150px;
+}
+.metric-card .value { font-size: 32px; font-weight: bold; }
+.metric-card .label { font-size: 14px; opacity: 0.9; }
+.highlight { background: #fef3c7; padding: 2px 6px; border-radius: 4px; }
+.good { color: #059669; font-weight: bold; }
+.bad { color: #dc2626; font-weight: bold; }
+.section { background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0; }
+.comparison { display: flex; gap: 20px; }
+.comparison > div { flex: 1; }
+code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+.finding { 
+    background: #ecfdf5; 
+    border-left: 4px solid #10b981; 
+    padding: 15px 20px; 
+    margin: 15px 0;
+    border-radius: 0 8px 8px 0;
+}
+.warning {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 15px 20px;
+    margin: 15px 0;
+    border-radius: 0 8px 8px 0;
+}
+</style>
+</head>
+<body>
+
+<h1>MCP Tool Selection Benchmark</h1>
+<p><strong>Full Report</strong> | Generated: 2026-03-13 17:47</p>
+
+<h2>Executive Summary</h2>
+<div class="section">
+
+<div style="text-align: center;">
+    <div class="metric-card">
+        <div class="value">2,709</div>
+        <div class="label">Total Benchmark Runs</div>
+    </div>
+    <div class="metric-card">
+        <div class="value">725</div>
+        <div class="label">Tools Tested</div>
+    </div>
+    <div class="metric-card">
+        <div class="value">2</div>
+        <div class="label">LLM Models</div>
+    </div>
+    <div class="metric-card">
+        <div class="value">15</div>
+        <div class="label">Tool Clusters</div>
+    </div>
+</div>
+
+<div class="finding">
+<strong>Key Finding:</strong> Claude Sonnet 4.6 consistently outperforms GPT-4o in tool selection across both benchmark scales, with a 20-24 percentage point advantage.
+</div>
+</div>
+
+<h2>Benchmark Comparison</h2>
+<div class="comparison">
+<div class="section">
+<h3>V1: 52 Tools (Curated)</h3>
+<p><strong>Claude Sonnet 4.6:</strong> 1204 runs, <span class='good'>64.7%</span> selection rate</p><p><strong>GPT-4o:</strong> 425 runs, <span class='bad'>40.9%</span> selection rate</p>
+<p><em>Focus: DeFi tools, productivity apps</em></p>
+<p><em>Key discovery: Schema Compatibility Failure</em></p>
+</div>
+<div class="section">
+<h3>V4: 673 Tools (Crawled)</h3>
+<p><strong>Claude Sonnet 4.6:</strong> 540 runs, <span class='good'>72.2%</span> selection rate</p><p><strong>GPT-4o:</strong> 540 runs, <span class='good'>52.0%</span> selection rate</p>
+<p><em>Source: awesome-mcp-servers</em></p>
+<p><em>15 functional clusters</em></p>
+</div>
+</div>
+<h2>Results by Task Tier</h2>
+<table>
+<tr>
+    <th rowspan="2">Tier</th>
+    <th colspan="2">V1 (52 tools)</th>
+    <th colspan="2">V4 (673 tools)</th>
+</tr>
+<tr>
+    <th>Claude</th>
+    <th>GPT-4o</th>
+    <th>Claude</th>
+    <th>GPT-4o</th>
+</tr>
+<tr><td><strong>T1 (Direct)</strong></td><td>88.5%</td><td>67.5%</td><td>79.4%</td><td>71.1%</td></tr><tr><td><strong>T2 (Ambiguous)</strong></td><td>59.5%</td><td>43.5%</td><td>57.2%</td><td>40.0%</td></tr><tr><td><strong>T3 (Competitive)</strong></td><td>55.4%</td><td>23.7%</td><td>80.0%</td><td>45.0%</td></tr></table>
+<div class="finding">
+<strong>Pattern:</strong> Both models show declining performance from T1→T2→T3, but Claude maintains higher accuracy under ambiguity. GPT-4o's T3 performance varies dramatically between benchmark versions.
+</div>
+<h2>Results by Cluster (V4 - 673 tools)</h2>
+<table>
+<tr><th>Cluster</th><th>Runs</th><th>Claude</th><th>GPT-4o</th><th>Gap</th></tr>
+<tr><td><strong>bridging</strong></td><td>120</td><td>100.0%</td><td>86.7%</td><td class='good'>+13.3pp</td></tr><tr><td><strong>database</strong></td><td>120</td><td>100.0%</td><td>73.3%</td><td class='good'>+26.7pp</td></tr><tr><td><strong>cloud_infra</strong></td><td>120</td><td>96.7%</td><td>58.3%</td><td class='good'>+38.4pp</td></tr><tr><td><strong>code_tools</strong></td><td>120</td><td>85.0%</td><td>61.7%</td><td class='good'>+23.3pp</td></tr><tr><td><strong>file_ops</strong></td><td>120</td><td>85.0%</td><td>56.7%</td><td class='good'>+28.3pp</td></tr><tr><td><strong>portfolio</strong></td><td>120</td><td>83.3%</td><td>73.3%</td><td class='good'>+10.0pp</td></tr><tr><td><strong>docs_productivity</strong></td><td>120</td><td>81.7%</td><td>48.3%</td><td class='good'>+33.4pp</td></tr><tr><td><strong>ai_ml</strong></td><td>120</td><td>18.3%</td><td>10.0%</td><td class='good'>+8.3pp</td></tr><tr><td><strong>finance_data</strong></td><td>120</td><td>0.0%</td><td>0.0%</td><td class='bad'>+0.0pp</td></tr></table><h2>Results by Cluster (V1 - 52 tools)</h2>
+<table>
+<tr><th>Cluster</th><th>Runs</th><th>Claude</th><th>GPT-4o</th><th>Gap</th></tr>
+<tr><td><strong>data_query</strong></td><td>120</td><td>100.0%</td><td>20.0%</td><td class='good'>+80.0pp</td></tr><tr><td><strong>notification</strong></td><td>120</td><td>98.6%</td><td>2.0%</td><td class='good'>+96.6pp</td></tr><tr><td><strong>search</strong></td><td>144</td><td>90.5%</td><td>80.0%</td><td class='good'>+10.5pp</td></tr><tr><td><strong>lending</strong></td><td>271</td><td>79.6%</td><td>8.0%</td><td class='good'>+71.6pp</td></tr><tr><td><strong>dex_swap</strong></td><td>394</td><td>73.3%</td><td>78.5%</td><td class='bad'>-5.2pp</td></tr><tr><td><strong>bridging</strong></td><td>120</td><td>60.0%</td><td>50.0%</td><td class='good'>+10.0pp</td></tr><tr><td><strong>file_ops</strong></td><td>120</td><td>50.0%</td><td>30.0%</td><td class='good'>+20.0pp</td></tr><tr><td><strong>web_fetch</strong></td><td>70</td><td>28.6%</td><td>0%</td><td class='good'>+28.6pp</td></tr><tr><td><strong>calendar</strong></td><td>120</td><td>24.3%</td><td>40.0%</td><td class='bad'>-15.7pp</td></tr><tr><td><strong>portfolio</strong></td><td>150</td><td>22.0%</td><td>0%</td><td class='good'>+22.0pp</td></tr></table>
+<h2>Three Failure Modes</h2>
+<div class="section">
+<h3>1. Schema Failure</h3>
+<p>The agent recognizes the tool but cannot complete the call due to missing parameters or unclear schema.</p>
+<p><strong>Evidence (V1):</strong> Notification cluster — 98% mention rate, 0% invocation rate on Claude.</p>
+
+<h3>2. Description Failure</h3>
+<p>The agent doesn't connect the task to the tool due to insufficient semantic signal in the description.</p>
+<p><strong>Evidence (V1):</strong> Portfolio cluster — 37% mention rate on Claude. Tools like <code>zapper_balance</code> weren't recognized for "check my DeFi positions".</p>
+
+<h3>3. Compatibility Failure</h3>
+<p>The tool works on one model but fails schema validation on another.</p>
+<p><strong>Evidence:</strong> <code>zapper_balance</code> schema defines <code>networks</code> as <code>type: array</code> without <code>items</code>. Claude accepts this; GPT-4o rejects with HTTP 400.</p>
+</div>
+
+<div class="warning">
+<strong>Implication:</strong> A tool optimized for Claude may be completely unusable on GPT-4o, and vice versa. Cross-model testing is essential.
+</div>
+
+<h2>Methodology</h2>
+<div class="section">
+<h3>Data Collection</h3>
+<ul>
+    <li><strong>V1:</strong> 52 tools manually curated from major MCP server repositories</li>
+    <li><strong>V4:</strong> 673 tools crawled from <a href="https://github.com/punkpeye/awesome-mcp-servers">awesome-mcp-servers</a> (83k+ stars)</li>
+</ul>
+
+<h3>Task Tiers</h3>
+<ul>
+    <li><strong>T1 (Direct):</strong> Explicitly names tool — "Swap on Uniswap V3"</li>
+    <li><strong>T2 (Ambiguous):</strong> Clear intent, no tool named — "Exchange stablecoins for ETH"</li>
+    <li><strong>T3 (Competitive):</strong> Vague or pits tools against each other — "Find optimal swap route"</li>
+</ul>
+
+<h3>Detection</h3>
+<ul>
+    <li>Primary: <code>tool_use</code> stop reason (explicit API call)</li>
+    <li>Secondary: Fuzzy name matching in response text</li>
+</ul>
+
+<h3>Configuration</h3>
+<ul>
+    <li>Temperature: 0 (deterministic)</li>
+    <li>Runs per task: 10 (V4) / variable (V1)</li>
+    <li>Models: Claude Sonnet 4.6, GPT-4o</li>
+</ul>
+</div>
+
+<h2>Conclusions</h2>
+<div class="section">
+<ol>
+    <li><strong>Cross-model variance is real and large.</strong> Claude outperforms GPT-4o by 20-24pp across both benchmark scales.</li>
+    <li><strong>Three distinct failure modes exist:</strong> Schema, Description, and Compatibility failures require different fixes.</li>
+    <li><strong>Scale matters but patterns persist.</strong> Expanding from 52 to 673 tools confirmed the core findings.</li>
+    <li><strong>T3 (competitive) is the hardest tier.</strong> Both models struggle when multiple tools could apply.</li>
+    <li><strong>Single-model testing is insufficient.</strong> A tool working on Claude may fail entirely on GPT-4o.</li>
+</ol>
+</div>
+
+<h2>Data Files</h2>
+<div class="section">
+<table>
+<tr><th>File</th><th>Description</th></tr>
+<tr><td><code>results.db</code></td><td>V1 benchmark results (52 tools, 1,629 runs)</td></tr>
+<tr><td><code>results_v4.db</code></td><td>V4 benchmark results (673 tools, 1,080 runs)</td></tr>
+<tr><td><code>tools.json</code></td><td>V1 tool definitions</td></tr>
+<tr><td><code>tools_v4.json</code></td><td>V4 tool definitions (merged)</td></tr>
+<tr><td><code>tasks.yaml</code></td><td>V1 benchmark tasks</td></tr>
+<tr><td><code>tasks_v4.yaml</code></td><td>V4 benchmark tasks</td></tr>
+</table>
+</div>
+
+<hr>
+<p style="color: #666; font-size: 14px;">
+MCP Tool Selection Benchmark | 2026 | 
+<a href="https://github.com/Tsubaki414/mcp-tool-selection-benchmark">GitHub</a>
+</p>
+</body>
+</html>

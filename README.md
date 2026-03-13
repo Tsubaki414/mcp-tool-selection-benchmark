@@ -4,18 +4,19 @@ Empirical benchmark measuring how LLMs select tools from MCP (Model Context Prot
 
 ## Key Findings
 
-- **Cross-model divergence**: Claude and GPT-4o show dramatically different tool selection behavior (6/10 clusters differ by >25%)
-- **Schema compatibility issues**: Some tool schemas work on Claude but fail validation on GPT-4o
-- **Selection consistency varies by task complexity**: Tier 1 (explicit) tasks show high consistency; Tier 3 (implicit) tasks show significant variance
+| Metric | Claude Sonnet 4.6 | GPT-4o | Gap |
+|--------|-------------------|--------|-----|
+| **Overall (V4, 673 tools)** | 72.2% | 52.0% | +20.2pp |
+| **Overall (V1, 52 tools)** | 64.7% | 40.9% | +23.8pp |
+| **T1 Direct** | 79.4% | 71.1% | +8.3pp |
+| **T2 Ambiguous** | 57.2% | 40.0% | +17.2pp |
+| **T3 Competitive** | 80.0% | 45.0% | +35.0pp |
 
-## The Problem
+## Three Failure Modes
 
-When you expose 50+ MCP tools to an LLM, which one does it pick? And does it pick the *right* one?
-
-Current MCP tooling assumes tool selection "just works." This benchmark measures:
-1. **Selection rate**: Does the model call any tool at all?
-2. **Correct selection**: Does it pick the intended tool?
-3. **Cross-model consistency**: Do Claude and GPT-4o agree?
+1. **Schema Failure**: Agent recognizes tool but cannot complete the call
+2. **Description Failure**: Agent doesn't connect task to tool
+3. **Compatibility Failure**: Tool works on Claude but fails validation on GPT-4o
 
 ## Schema Compatibility Discovery
 
@@ -43,52 +44,74 @@ pip install anthropic openai pyyaml
 export ANTHROPIC_API_KEY=your_key
 export OPENAI_API_KEY=your_key
 
-# Run the demo
+# Run the schema compatibility demo
 python demo_schema_compatibility.py
 
-# Run full benchmark (Claude)
-python src/runner.py --runs 10
-
-# Run cross-model comparison
-python src/multi_model_runner.py --model gpt4o --runs 10
+# Run full benchmark (V4)
+python src/benchmark_v4.py
 ```
 
 ## Repository Structure
 
 ```
 ├── data/
-│   ├── tools.json       # 52 MCP tool definitions (DeFi-focused)
-│   ├── tasks.yaml       # 51 test tasks across 3 tiers
-│   └── variants.json    # Tool description variants for A/B testing
+│   ├── tools.json         # V1: 52 curated MCP tools
+│   ├── tools_v4.json      # V4: 673 tools from awesome-mcp-servers
+│   ├── tasks.yaml         # V1: 51 test tasks
+│   └── tasks_v4.yaml      # V4: 90 test tasks (15 clusters × 6)
 ├── src/
-│   ├── runner.py              # Claude benchmark runner
-│   ├── multi_model_runner.py  # Cross-model comparison
-│   └── analyzer.py            # Results analysis
-├── demo_schema_compatibility.py  # Minimal repro of schema issue
-└── reports/                      # Generated analysis reports
+│   ├── runner.py                # V1 Claude benchmark
+│   ├── multi_model_runner.py    # Cross-model comparison
+│   ├── benchmark_v4.py          # V4 parallel benchmark runner
+│   └── generate_report.py       # Report generator
+├── docs/
+│   └── METHODOLOGY_V4.md        # Full methodology documentation
+├── reports/
+│   └── FULL_REPORT.html         # Complete analysis report
+└── demo_schema_compatibility.py # Schema issue demo
 ```
+
+## Benchmark Versions
+
+### V1 (52 Tools)
+- **Source**: Manually curated from major MCP repositories
+- **Runs**: 1,629 (Claude 1,204 + GPT-4o 425)
+- **Focus**: DeFi, productivity tools
+- **Key finding**: Schema Compatibility Failure
+
+### V4 (673 Tools)
+- **Source**: Crawled from [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
+- **Runs**: 1,080 (540 per model)
+- **Clusters**: 15 functional categories
+- **Key finding**: Patterns persist at scale
 
 ## Methodology
 
 ### Task Tiers
-- **Tier 1 (Explicit)**: Direct tool name mention ("Use uniswap_swap to...")
-- **Tier 2 (Implicit)**: Clear intent without naming ("Swap ETH for USDC")
-- **Tier 3 (Ambiguous)**: Underspecified requests ("Check my portfolio")
-
-### Tool Clusters
-10 functional clusters: `dex_swap`, `lending`, `portfolio`, `bridge`, `notification`, `calendar`, `data_query`, `nft`, `governance`, `web_fetch`
+- **T1 (Direct)**: Explicitly names the tool — "Use uniswap_swap to..."
+- **T2 (Ambiguous)**: Clear intent without naming — "Swap ETH for USDC"
+- **T3 (Competitive)**: Vague or multi-tool applicable — "Check my portfolio"
 
 ### Detection
-Dual detection: explicit `tool_use` API calls + mentioned tool names in response text.
+- Primary: `tool_use` stop reason (explicit API call)
+- Secondary: Fuzzy name matching in response text
+
+### Configuration
+- Temperature: 0 (deterministic)
+- Runs per task: 10
+- Tool pool: Shuffled per run
 
 ## Results Summary
 
-| Metric | Claude | GPT-4o |
-|--------|--------|--------|
-| Overall selection rate | 87% | 62% |
-| T1 accuracy | 98% | 95% |
-| T3 accuracy | 71% | 43% |
-| Schema failures | 0 | 2 clusters |
+### By Cluster (V4)
+
+| Cluster | Claude | GPT-4o | Gap |
+|---------|--------|--------|-----|
+| bridging | 100% | 86.7% | +13.3pp |
+| cloud_infra | 95.0% | 86.7% | +8.3pp |
+| database | 86.7% | 51.7% | +35.0pp |
+| docs_productivity | 81.7% | 48.3% | +33.4pp |
+| notification | 70.0% | 41.7% | +28.3pp |
 
 ## License
 
@@ -96,7 +119,6 @@ MIT
 
 ## Citation
 
-If you use this benchmark, please cite:
 ```
 MCP Tool Selection Benchmark (2026)
 https://github.com/Tsubaki414/mcp-tool-selection-benchmark
